@@ -2,8 +2,9 @@ import express from "express";
 import cors from "cors";
 import connectToDB from "./db/mongodb";
 import authRoutes from "./routes/authRoutes";
-import userRoutes from './routes/userRoutes'
-import friendRoutes from './routes/friendRoutes'
+import userRoutes from "./routes/userRoutes";
+import friendRoutes from "./routes/friendRoutes";
+import recommendationRoutes from "./routes/recommendationRoutes";
 
 connectToDB();
 
@@ -21,9 +22,10 @@ app.use(
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
-app.use('/api', userRoutes)
-app.use('/api/friend', friendRoutes)
+app.use("/api", userRoutes);
+app.use("/api/friend", friendRoutes);
+app.use("/api", recommendationRoutes);
 
-app.listen(6000, () => {
-  console.log(`Server started at ${6000}`);
+app.listen(6001, () => {
+  console.log(`Server started at ${6001}`);
 });
