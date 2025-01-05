@@ -3,7 +3,7 @@ import { User } from '@/types/user';
 import { FriendRequest } from '@/types/user';
 
 const api = axios.create({
-  baseURL: 'http://localhost:6001/api',
+  baseURL: 'https://connect-puce.vercel.app/api',
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
