@@ -32,11 +32,15 @@ const HomePage: React.FC = () => {
       <main className="container mx-auto p-8">
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
         
-        {pendingRequests.length > 0 && (
+        {pendingRequests.length > 0 ? (
           <PendingRequests
             requests={pendingRequests}
             onHandle={handleRequest}
           />
+        ): (
+          <div className='font-bold text-2xl mb- mt-4' >
+            No requests Pending.
+          </div>
         )}
 
         {users.length > 0 && (

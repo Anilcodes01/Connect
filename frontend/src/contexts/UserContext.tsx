@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { User, FriendRequest } from '../types/user';
 import { userApi, friendApi } from '../api/axios';
 
+
 interface UserContextType {
   users: User[];
   pendingRequests: FriendRequest[];
@@ -54,7 +55,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const sendFriendRequest = async (userId: string) => {
     try {
       await friendApi.sendFriendRequest(userId);
-      // Refresh users list after sending request
+
       fetchUsers();
     } catch (error) {
       console.error('Error sending friend request:', error);
@@ -64,7 +65,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const handleRequest = async (requestId: string, action: 'accept' | 'rejected') => {
     try {
       await friendApi.handleFriendRequest(requestId, action);
-      // Refresh pending requests after handling
+
       fetchPendingRequests();
     } catch (error) {
       console.error('Error handling friend request:', error);

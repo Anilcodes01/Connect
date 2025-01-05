@@ -1,9 +1,13 @@
 import express, { Request, Response } from "express";
 import User from "../models/UserSchema";
+import { AuthenticatedRequest } from "../middlewares/authMiddleware";
 
-export const getUsers = async (req: Request, res: Response): Promise<void> => {
+export const getUsers = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    const users = await User.find({});
+   
+    const loggedInUserId = req.userId 
+
+    const users = await User.find({ _id: { $ne: loggedInUserId } });
 
     res.status(200).json({
       message: "Users fetched successfully",
@@ -12,11 +16,12 @@ export const getUsers = async (req: Request, res: Response): Promise<void> => {
   } catch (error: any) {
     console.error("Error while fetching users:", error);
     res.status(500).json({
-      message: "Erorr while fetching users",
+      message: "Error while fetching users",
       error: error.message,
     });
   }
 };
+
 
 export const searchUsers = async (
   req: Request,

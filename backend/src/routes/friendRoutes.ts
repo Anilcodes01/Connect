@@ -1,4 +1,5 @@
 import express from "express";
+import cors from 'cors';
 import {
   sendFriendRequest,
   getPendingRequests,
@@ -6,7 +7,10 @@ import {
 } from "../controllers/friendController";
 import { authenticateToken } from "../middlewares/authMiddleware";
 
+
 const router = express.Router();
+
+router.options('*', cors());
 
 router.use(authenticateToken);
 

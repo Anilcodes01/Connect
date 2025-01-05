@@ -31,6 +31,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Navigate to="/home" />} />
         </Routes>
       </AuthProvider>
+      
     </BrowserRouter>
   );
 };
